@@ -13,6 +13,7 @@ public protocol Highlightable {
 }
 
 public extension Highlightable {
+  
   func execute(_ text: String, rules: [Rule]) -> NSMutableAttributedString {
     let result = NSMutableAttributedString(string: text)
     let range = NSRange(location: 0, length: text.utf16.count)
@@ -30,12 +31,8 @@ public extension Highlightable {
     
     rules.forEach { rule in
       let matches = rule.regex.matches(in: text, range: range)
-      matches.forEach { match in
-        result.enumerateAttributes(in: match.range) { attributes, _, _ in
-          if let previousFont = attributes.first(where: { $0.key == .font })?.value as? SystemFont {
-            
-          }
-        }
+      matches.forEach {
+        rule.apply(text, attributedString: result, match: $0)
       }
     }
     
