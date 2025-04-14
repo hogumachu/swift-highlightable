@@ -13,16 +13,14 @@ public protocol SystemFontExtensions {
 
 extension SystemFont: SystemFontExtensions {
   
-  #if os(macOS)
   public func apply(_ traits: SystemFontDescriptor.SymbolicTraits...) -> SystemFont {
+#if os(macOS)
     let descriptor = fontDescriptor.withSymbolicTraits(SystemFontDescriptor.SymbolicTraits(traits).union(fontDescriptor.symbolicTraits))
     return SystemFont(
       descriptor: descriptor,
       size: 0
     ) ?? self
-  }
-  #else
-  public func apply(_ traits: SystemFontDescriptor.SymbolicTraits...) -> SystemFont {
+#else
     guard let descriptor = fontDescriptor.withSymbolicTraits(SystemFontDescriptor.SymbolicTraits(traits).union(fontDescriptor.symbolicTraits)) else {
       return self
     }
@@ -30,8 +28,6 @@ extension SystemFont: SystemFontExtensions {
       descriptor: descriptor,
       size: 0
     )
+#endif
   }
-  #endif
-  
-  
 }

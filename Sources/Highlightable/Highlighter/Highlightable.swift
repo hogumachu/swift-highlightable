@@ -8,7 +8,8 @@
 import Foundation
 
 public protocol Highlightable {
-  var style: Styleable { get set }
+  associatedtype Style: Styleable
+  var style: Style { get }
   func execute(_ text: String, rules: [Rule]) -> NSMutableAttributedString
 }
 
