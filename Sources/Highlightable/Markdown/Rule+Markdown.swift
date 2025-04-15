@@ -11,8 +11,14 @@ public extension Array where Element == Rule {
   
   static func markdown<T: MarkdownStyleable>(style: T) -> [Element] {
     return [
-      .init(.inlineCode, textRule: .init(name: .font, result: style.codeFont)),
-      .init(.codeBlock, textRule: .init(name: .font, result: style.codeFont)),
+      .init(.inlineCode, textRules: [
+        .init(name: .font, result: style.codeFont),
+        .init(name: .backgroundColor, result: style.secondaryBackground),
+      ]),
+      .init(.codeBlock, textRules: [
+        .init(name: .font, result: style.codeFont),
+        .init(name: .backgroundColor, result: style.secondaryBackground),
+      ]),
       .init(.heading, textRules: [
         .symbolicTraits(style.headingTraits),
         .init(name: .kern, result: 0.5),

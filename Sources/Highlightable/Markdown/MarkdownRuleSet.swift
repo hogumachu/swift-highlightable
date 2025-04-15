@@ -82,3 +82,76 @@ private extension String {
     return try! NSRegularExpression(pattern: self, options: options)
   }
 }
+
+// wip
+enum MarkdownRegex {
+  static let heading = try! NSRegularExpression(
+    pattern: #"^#{1,6}\s.+$"#,
+    options: [.anchorsMatchLines]
+  )
+  
+  static let unorderedList = try! NSRegularExpression(
+    pattern: #"^(\s*)[-+*]\s+.+$"#,
+    options: [.anchorsMatchLines]
+  )
+  
+  static let orderedList = try! NSRegularExpression(
+    pattern: #"^(\s*)\d+\.\s+.+$"#,
+    options: [.anchorsMatchLines]
+  )
+  
+  static let blockquote = try! NSRegularExpression(
+    pattern: #"^>\s?.+$"#,
+    options: [.anchorsMatchLines]
+  )
+  
+  static let fencedCodeBlockStart = try! NSRegularExpression(
+    pattern: #"^```(\w+)?$"#,
+    options: [.anchorsMatchLines]
+  )
+  
+  static let fencedCodeBlockEnd = try! NSRegularExpression(
+    pattern: #"^```$"#,
+    options: [.anchorsMatchLines]
+  )
+  
+  static let inlineCode = try! NSRegularExpression(
+    pattern: #"`[^`\n]+`"#,
+    options: []
+  )
+  
+  static let bold = try! NSRegularExpression(
+    pattern: #"(\*\*|__)(?=\S)(.+?[*_]*)(?<=\S)\1"#,
+    options: []
+  )
+  
+  static let italic = try! NSRegularExpression(
+    pattern: #"(\*|_)(?=\S)(.+?)(?<=\S)\1"#,
+    options: []
+  )
+  
+  static let boldItalic = try! NSRegularExpression(
+    pattern: #"(\*\*\*|___)(?=\S)(.+?)(?<=\S)\1"#,
+    options: []
+  )
+  
+  static let strikethrough = try! NSRegularExpression(
+    pattern: #"~~(?=\S)(.+?)(?<=\S)~~"#,
+    options: []
+  )
+  
+  static let link = try! NSRegularExpression(
+    pattern: #"\[([^\]]+)\]\(([^)]+)\)"#,
+    options: []
+  )
+  
+  static let image = try! NSRegularExpression(
+    pattern: #"!\[([^\]]*)\]\(([^)]+)\)"#,
+    options: []
+  )
+  
+  static let horizontalRule = try! NSRegularExpression(
+    pattern: #"^(\*\s?){3,}$|^(-\s?){3,}$|^(_\s?){3,}$"#,
+    options: [.anchorsMatchLines]
+  )
+}
