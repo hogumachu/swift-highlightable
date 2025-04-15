@@ -22,6 +22,13 @@ public enum TextRule {
 
 extension TextRule {
   
+  init(name: TextRuleName, result: TextRuleResult) {
+    self = .default(
+      name: name,
+      action: { _, _ in result }
+    )
+  }
+  
   func applyIfEnabled(
     _ text: NSMutableAttributedString,
     content: TextRuleContent,
