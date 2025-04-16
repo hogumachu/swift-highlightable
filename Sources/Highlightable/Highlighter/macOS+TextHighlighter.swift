@@ -58,8 +58,53 @@ public extension TextHighlighter {
   
   final class ScrollTextView: NSView {
     
-    public let scrollView = NSScrollView()
-    public let textView = NSTextView()
+    lazy var scrollView: NSScrollView = {
+      let scrollView = NSScrollView()
+      scrollView.drawsBackground = true
+      scrollView.borderType = .noBorder
+      scrollView.hasVerticalScroller = true
+      scrollView.hasHorizontalScroller = false
+      scrollView.autoresizingMask = [.width, .height]
+      scrollView.translatesAutoresizingMaskIntoConstraints = false
+      return scrollView
+    }()
+    
+    lazy var textView: NSTextView = {
+      let contentSize = scrollView.contentSize
+      let textStorage = NSTextStorage()
+      let layoutManager = NSLayoutManager()
+      let textContainer = NSTextContainer(containerSize: scrollView.frame.size)
+      
+      textStorage.addLayoutManager(layoutManager)
+      textContainer.widthTracksTextView = true
+      textContainer.containerSize = NSSize(
+        width: contentSize.width,
+        height: CGFloat.greatestFiniteMagnitude
+      )
+      layoutManager.addTextContainer(textContainer)
+      
+      let textView = NSTextView(
+        frame: .zero,
+        textContainer: textContainer
+      )
+      textView.autoresizingMask = .width
+      textView.backgroundColor = NSColor.textBackgroundColor
+      textView.delegate = self.delegate
+      textView.drawsBackground = true
+      textView.isHorizontallyResizable = false
+      textView.isVerticallyResizable = true
+      textView.maxSize = NSSize(
+        width: CGFloat.greatestFiniteMagnitude,
+        height: CGFloat.greatestFiniteMagnitude
+      )
+      textView.minSize = NSSize(
+        width: 0,
+        height: contentSize.height
+      )
+      textView.textColor = NSColor.labelColor
+      textView.allowsUndo = true
+      return textView
+    }()
     
     weak var delegate: NSTextViewDelegate?
     
@@ -70,7 +115,6 @@ public extension TextHighlighter {
     public init() {
       self.attributedText = .init()
       super.init(frame: .zero)
-      setupViews()
       setupLayouts()
     }
     
@@ -80,6 +124,7 @@ public extension TextHighlighter {
     }
     
     private func setupLayouts() {
+      scrollView.documentView = textView
       addSubview(scrollView)
       NSLayoutConstraint.activate([
         scrollView.topAnchor.constraint(equalTo: topAnchor),
@@ -87,44 +132,6 @@ public extension TextHighlighter {
         scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
         scrollView.bottomAnchor.constraint(equalTo: bottomAnchor)
       ])
-    }
-    
-    private func setupViews() {
-      scrollView.drawsBackground = true
-      scrollView.borderType = .noBorder
-      scrollView.hasVerticalScroller = true
-      scrollView.hasHorizontalScroller = false
-      scrollView.autoresizingMask = [.width, .height]
-      scrollView.translatesAutoresizingMaskIntoConstraints = false
-      
-      textView.textContainer = makeTextContainer()
-      textView.autoresizingMask = .width
-      textView.backgroundColor = NSColor.textBackgroundColor
-      textView.delegate = self.delegate
-      textView.drawsBackground = true
-      textView.isHorizontallyResizable = false
-      textView.isVerticallyResizable = true
-      textView.maxSize = NSSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
-      textView.minSize = NSSize(width: 0, height: scrollView.contentSize.height)
-      textView.textColor = NSColor.labelColor
-      textView.allowsUndo = true
-      
-      scrollView.documentView = textView
-    }
-    
-    private func makeTextContainer() -> NSTextContainer {
-      let contentSize = scrollView.contentSize
-      let textStorage = NSTextStorage()
-      let layoutManager = NSLayoutManager()
-      textStorage.addLayoutManager(layoutManager)
-      let textContainer = NSTextContainer(containerSize: scrollView.frame.size)
-      textContainer.widthTracksTextView = true
-      textContainer.containerSize = NSSize(
-        width: contentSize.width,
-        height: CGFloat.greatestFiniteMagnitude
-      )
-      layoutManager.addTextContainer(textContainer)
-      return textContainer
     }
   }
 }
