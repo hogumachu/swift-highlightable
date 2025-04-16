@@ -14,7 +14,6 @@ extension MarkdownStyle {
       defaultFont: .systemFont(ofSize: SystemFont.systemFontSize),
       defaultForegroundColor: .labelColor,
       codeFont: .monospacedSystemFont(ofSize: SystemFont.systemFontSize, weight: .thin),
-      headingTraits: [.bold, .expanded],
       boldTraits: [.bold],
       emphasisTraits: [.italic],
       boldEmphasisTraits: [.bold, .italic],
@@ -25,6 +24,12 @@ extension MarkdownStyle {
         foregroundColor: .lightGray,
         font: .systemFont(ofSize: SystemFont.smallSystemFontSize),
         traits: [.italic]
+      ),
+      headerStyle: .init(
+        traits: [.bold, .expanded],
+        kern: 0.5,
+        baseFontSize: SystemFont.systemFontSize,
+        fontSizeMultiplier: 2.5
       )
     )
   }
@@ -36,7 +41,6 @@ extension MarkdownStyle {
       defaultFont: .preferredFont(forTextStyle: .body),
       defaultForegroundColor: .label,
       codeFont: .monospacedSystemFont(ofSize: SystemFont.systemFontSize, weight: .thin),
-      headingTraits: [.traitBold, .traitExpanded],
       boldTraits: [.traitBold],
       emphasisTraits: [.traitItalic],
       boldEmphasisTraits: [.traitBold, .traitItalic],
@@ -47,6 +51,12 @@ extension MarkdownStyle {
         foregroundColor: .lightGray,
         font: .preferredFont(forTextStyle: .callout),
         traits: [.traitItalic]
+      ),
+      headerStyle: .init(
+        traits: [.traitBold, .traitExpanded],
+        kern: 0.5,
+        baseFontSize: SystemFont.systemFontSize,
+        fontSizeMultiplier: 2.5
       )
     )
   }

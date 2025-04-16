@@ -9,7 +9,6 @@ import Foundation
 
 public protocol MarkdownStyleable: Styleable {
   var codeFont: SystemFont { get }
-  var headingTraits: SystemSymbolicTraits { get }
   var boldTraits: SystemSymbolicTraits { get }
   var emphasisTraits: SystemSymbolicTraits { get }
   var boldEmphasisTraits: SystemSymbolicTraits { get }
@@ -17,4 +16,5 @@ public protocol MarkdownStyleable: Styleable {
   var lighterColor: SystemColor { get }
   var textColor: SystemColor { get }
   var blockquoteStyle: BlockquoteStyle { get }
+  var headerStyle: HeaderStyle { get }
 }
