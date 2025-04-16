@@ -11,6 +11,7 @@ import SwiftUI
 enum ExampleViews: String, CaseIterable {
   case markdown = "Markdown View"
   case blockquote = "Blockquote View"
+  case header = "Header View"
 }
 
 extension ExampleViews {
@@ -19,6 +20,7 @@ extension ExampleViews {
     switch self {
     case .markdown: MarkdownView()
     case .blockquote: BlockquoteView()
+    case .header: HeaderView()
     }
   }
 }
