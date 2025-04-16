@@ -20,7 +20,7 @@ public struct OrderedListRuleProvider: MarkdownRuleProvidable {
       regex: regex,
       textRules: [
         // TODO: - Setup styles
-        .init(name: .foregroundColor, result: style.lighterColor)
+        .foregroundColor(style.lighterColor)
       ]
     )
   }

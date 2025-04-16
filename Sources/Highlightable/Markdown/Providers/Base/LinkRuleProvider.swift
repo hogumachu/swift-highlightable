@@ -19,8 +19,8 @@ public struct LinkRuleProvider: MarkdownRuleProvidable {
     return .init(
       regex: regex,
       textRules: [
-        .init(name: .underlineStyle, result: NSUnderlineStyle.single.rawValue),
-        .init(name: .foregroundColor, result: style.lighterColor), // TODO: - Add Color Dependency
+        .underlineStyle(.single),
+        .foregroundColor(style.lighterColor) // TODO: - Add Color Dependency
       ]
     )
   }

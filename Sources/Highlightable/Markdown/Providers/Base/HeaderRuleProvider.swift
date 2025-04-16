@@ -20,8 +20,8 @@ public struct HeaderRuleProvider: MarkdownRuleProvidable {
       regex: regex,
       textRules: [
         .symbolicTraits(style.headingTraits),
-        .init(name: .kern, result: 0.5),
-        .default(name: .font) { content, _ in
+        .kern(0.5),
+        .font { content, _ in
           let maxLevel = 6
           let uncappedLevel = content.prefix(while: { char in char == "#" }).count
           let level = Swift.min(maxLevel, uncappedLevel)

@@ -18,8 +18,8 @@ public struct StrikethroughRuleProvider: MarkdownRuleProvidable {
     return .init(
       regex: regex,
       textRules: [
-        .init(name: .strikethroughStyle, result: NSUnderlineStyle.single.rawValue),
-        .init(name: .strikethroughColor, result: style.lighterColor), // TODO: - Add Color Dependency
+        .strikethroughStyle(.single),
+        .strikethroughColor(style.lighterColor) // TODO: - Add Color Dependency
       ]
     )
   }
