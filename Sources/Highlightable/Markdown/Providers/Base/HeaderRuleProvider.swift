@@ -19,13 +19,13 @@ public struct HeaderRuleProvider: MarkdownRuleProvidable {
     return .init(
       regex: regex,
       textRules: [
-        .symbolicTraits(style.headingTraits),
-        .kern(0.5),
+        .symbolicTraits(style.headerStyle.traits),
+        .kern(style.headerStyle.kern),
         .font { content, _ in
           let maxLevel = 6
           let uncappedLevel = content.prefix(while: { char in char == "#" }).count
           let level = Swift.min(maxLevel, uncappedLevel)
-          let fontSize = CGFloat(maxLevel - level) * 2.5 + style.defaultFont.pointSize // TODO: - Add Size Dependency
+          let fontSize = CGFloat(maxLevel - level) * style.headerStyle.fontSizeMultiplier + style.headerStyle.baseFontSize
           return SystemFont(descriptor: style.defaultFont.fontDescriptor, size: fontSize) as TextRuleResult
         }
       ]
