@@ -20,7 +20,12 @@ extension MarkdownStyle {
       boldEmphasisTraits: [.bold, .italic],
       secondaryBackground: .windowBackgroundColor,
       lighterColor: .lightGray,
-      textColor: .labelColor
+      textColor: .labelColor,
+      blockquoteStyle: .init(
+        foregroundColor: .lightGray,
+        font: .systemFont(ofSize: SystemFont.smallSystemFontSize),
+        traits: [.italic]
+      )
     )
   }
 }
@@ -37,7 +42,12 @@ extension MarkdownStyle {
       boldEmphasisTraits: [.traitBold, .traitItalic],
       secondaryBackground: .secondarySystemBackground,
       lighterColor: .lightGray,
-      textColor: .label
+      textColor: .label,
+      blockquoteStyle: .init(
+        foregroundColor: .lightGray,
+        font: .preferredFont(forTextStyle: .callout),
+        traits: [.traitItalic]
+      )
     )
   }
 }

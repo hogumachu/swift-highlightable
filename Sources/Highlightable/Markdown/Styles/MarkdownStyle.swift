@@ -19,6 +19,7 @@ public struct MarkdownStyle: MarkdownStyleable {
   public let secondaryBackground: SystemColor
   public let lighterColor: SystemColor
   public let textColor: SystemColor
+  public let blockquoteStyle: BlockquoteStyle
   
   public init(
     defaultFont: SystemFont,
@@ -30,7 +31,8 @@ public struct MarkdownStyle: MarkdownStyleable {
     boldEmphasisTraits: SystemSymbolicTraits,
     secondaryBackground: SystemColor,
     lighterColor: SystemColor,
-    textColor: SystemColor
+    textColor: SystemColor,
+    blockquoteStyle: BlockquoteStyle
   ) {
     self.defaultFont = defaultFont
     self.defaultForegroundColor = defaultForegroundColor
@@ -42,5 +44,6 @@ public struct MarkdownStyle: MarkdownStyleable {
     self.secondaryBackground = secondaryBackground
     self.lighterColor = lighterColor
     self.textColor = textColor
+    self.blockquoteStyle = blockquoteStyle
   }
 }
