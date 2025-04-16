@@ -19,7 +19,7 @@ public struct CodeBlockRuleProvider: MarkdownRuleProvidable {
     return .init(
       regex: regex,
       textRules: [
-        .init(name: .font, result: style.codeFont)
+        .font(style.codeFont)
       ]
     )
   }

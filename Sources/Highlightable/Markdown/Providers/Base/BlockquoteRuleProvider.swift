@@ -19,8 +19,8 @@ public struct BlockquoteRuleProvider: MarkdownRuleProvidable {
     return .init(
       regex: regex,
       textRules: [
-        .init(name: .foregroundColor, result: style.blockquoteStyle.foregroundColor),
-        .init(name: .font, result: style.blockquoteStyle.font),
+        .font(style.blockquoteStyle.font),
+        .foregroundColor(style.blockquoteStyle.foregroundColor),
         .symbolicTraits(style.blockquoteStyle.traits),
       ]
     )
