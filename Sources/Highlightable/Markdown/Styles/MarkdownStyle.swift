@@ -20,6 +20,7 @@ public struct MarkdownStyle: MarkdownStyleable {
   public let textColor: SystemColor
   public let blockquoteStyle: BlockquoteStyle
   public let headerStyle: HeaderStyle
+  public let linkStyle: LinkStyle
   
   public init(
     defaultFont: SystemFont,
@@ -32,7 +33,8 @@ public struct MarkdownStyle: MarkdownStyleable {
     lighterColor: SystemColor,
     textColor: SystemColor,
     blockquoteStyle: BlockquoteStyle,
-    headerStyle: HeaderStyle
+    headerStyle: HeaderStyle,
+    linkStyle: LinkStyle
   ) {
     self.defaultFont = defaultFont
     self.defaultForegroundColor = defaultForegroundColor
@@ -45,5 +47,6 @@ public struct MarkdownStyle: MarkdownStyleable {
     self.textColor = textColor
     self.blockquoteStyle = blockquoteStyle
     self.headerStyle = headerStyle
+    self.linkStyle = linkStyle
   }
 }

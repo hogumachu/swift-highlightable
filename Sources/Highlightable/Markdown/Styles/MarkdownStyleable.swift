@@ -17,4 +17,5 @@ public protocol MarkdownStyleable: Styleable {
   var textColor: SystemColor { get }
   var blockquoteStyle: BlockquoteStyle { get }
   var headerStyle: HeaderStyle { get }
+  var linkStyle: LinkStyle { get }
 }

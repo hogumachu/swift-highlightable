@@ -30,6 +30,9 @@ extension MarkdownStyle {
         kern: 0.5,
         baseFontSize: SystemFont.systemFontSize,
         fontSizeMultiplier: 2.5
+      ),
+      linkStyle: .init(
+        foregroundColor: .blue
       )
     )
   }
@@ -57,6 +60,9 @@ extension MarkdownStyle {
         kern: 0.5,
         baseFontSize: SystemFont.systemFontSize,
         fontSizeMultiplier: 2.5
+      ),
+      linkStyle: .init(
+        foregroundColor: .blue
       )
     )
   }
