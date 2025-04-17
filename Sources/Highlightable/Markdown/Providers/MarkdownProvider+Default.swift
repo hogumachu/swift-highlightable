@@ -11,17 +11,17 @@ public extension Array where Element == MarkdownRuleProvidable.Type {
   
   static var `default`: [MarkdownRuleProvidable.Type] {
     return [
-      HeaderRuleProvider.self,
-      StrikethroughRuleProvider.self,
-      BoldRuleProvider.self,
-      ItalicRuleProvider.self,
-      BoldItalicRuleProvider.self,
-      InlineCodeRuleProvider.self,
-      CodeBlockRuleProvider.self,
-      LinkRuleProvider.self,
       BlockquoteRuleProvider.self,
+      BoldItalicRuleProvider.self,
+      BoldRuleProvider.self,
+      CodeBlockRuleProvider.self,
+      HeaderRuleProvider.self,
+      InlineCodeRuleProvider.self,
+      ItalicRuleProvider.self,
+      LinkRuleProvider.self,
+      OrderedListRuleProvider.self,
+      StrikethroughRuleProvider.self,
       UnorderedListRuleProvider.self,
-      OrderedListRuleProvider.self
     ]
   }
   
