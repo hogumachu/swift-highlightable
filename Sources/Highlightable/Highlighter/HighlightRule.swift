@@ -34,14 +34,15 @@ public extension Rule {
         }
       }
       
-      let contentRange = Range(match.range, in: origin)!
-      let content = String(origin[contentRange])
-      textRule.applyIfEnabled(
-        attributedString,
-        content: content,
-        contentRange: contentRange,
-        range: match.range
-      )
+      if let contentRange = Range(match.range, in: origin) {
+        let content = String(origin[contentRange])
+        textRule.applyIfEnabled(
+          attributedString,
+          content: content,
+          contentRange: contentRange,
+          range: match.range
+        )
+      }
     }
   }
 }
