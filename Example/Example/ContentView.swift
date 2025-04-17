@@ -12,6 +12,7 @@ enum ExampleViews: String, CaseIterable {
   case markdown = "Markdown View"
   case blockquote = "Blockquote View"
   case header = "Header View"
+  case link = "Link View"
 }
 
 extension ExampleViews {
@@ -21,6 +22,7 @@ extension ExampleViews {
     case .markdown: MarkdownView()
     case .blockquote: BlockquoteView()
     case .header: HeaderView()
+    case .link: LinkView()
     }
   }
 }
